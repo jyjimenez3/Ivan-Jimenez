@@ -1,0 +1,132 @@
+Implementing Queues 
+import java.util.*;
+ 
+/*  Class arrayQueue  */
+class MyQueue
+{
+     int Queue[] ;
+     int front;
+     int rear;
+     int maxsize;
+     int length;
+ 
+    // Constructor //
+    public MyQueue(int n) 
+    {
+        maxsize = n;
+        length = 0;
+        Queue = new int[maxsize];
+        front = -1;
+        rear = -1;
+    }    
+    
+    //  Method to check queue empty //
+    public boolean isEmpty() 
+    {
+        if (length == 0) // Determines if length is == to 0//
+        {
+            System.out.print("\n\nThe Queue is Empty =[ \n");  // if == to 0 than it is empty//
+        }
+        return front == -1;
+    }//  Method to check queue empty //    
+    
+    
+    //  Method to check queue  full //
+    public boolean isFull() 
+    {
+        if (length == length) // Determine if length = to Length // 
+        {
+            System.out.print("\nThe Queue is Full =] \n"); // if eqaul than Queue is full // 
+        }
+        return front==0 && rear == maxsize -1 ; // return both pointers//
+    } //  Method to check queue  full //   
+   
+    //  methods to get the size of the queue //
+    public int getSize()
+    {
+        return length ; // returns the length of the queue//
+    } //  methods to get the size of the queue //
+    
+    
+    //  methods to check front of the queue //
+    public int peek() 
+    {
+        return Queue[front];      //  methods to check front of the queue //
+    }    
+   //  methods to check front of the queue //
+   
+    //  methods to insert to the queue //
+    public void insert(int i) 
+    {
+         if (rear == -1) // validates if rear = -1//
+        {
+            front = 0;
+            rear = 0;                   //  methods to insert to the queue //
+            Queue[rear] = i; // insert at rear//
+        }
+         else
+        if ( rear + 1 < maxsize)
+            Queue[++rear] = i;   // insert at rear// 
+        length++ ;  
+         
+    }      //  methods to insert to the queue //
+  
+   
+   
+    //  methods to remove from the queue //
+    public int remove() 
+    {
+            length-- ;
+            int ele = Queue[front];
+            if ( front == rear) // vaidates if front = rear//
+            {
+                front = -1;                                //  methods to remove from the queue //
+                rear = -1;
+            }
+            else
+                front++;                
+            System.out.print("\n Queue Has Been Removed");
+            return ele;
+    }    //  methods to remove from the queue //
+
+    
+    //  methods to display the queue //
+    public void display()
+    {
+        System.out.print("\n Queue: ");
+        for (int i = front; i <= rear; i++)             //  methods to display the queue //
+            System.out.print("["+Queue[i]+"] ");
+    }//  methods to display the queue //
+}
+ 
+
+public class QueueApp
+{
+    public static void main(String[] args)
+    {
+        /* creating object of class arrayQueue */
+        MyQueue NEW_q = new MyQueue(500);        
+        
+        //Inserting the 4 diferent items//
+        NEW_q.insert(5);
+        NEW_q.insert(6);        //Calling on "insertMethods"//
+        NEW_q.insert(1);
+        NEW_q.insert(4);
+        //Inserting the 4 diferent items//
+        
+        NEW_q.display();// Calling on "DisplayMethods"// 
+        NEW_q.isFull(); //Now to check if it is full, we call the isFullMethods//
+
+            // Now to Remove The 4 Ints we inserted//
+            NEW_q.remove();
+            NEW_q.remove();
+            NEW_q.remove();             // calling on "removeMethods"//
+            NEW_q.remove();
+            // Now to Remove The 4 Ints we inserted//
+
+            //Now to check if it was removed, we call the isEmptyMethods//
+            NEW_q.isEmpty();
+        
+        
+    }    
+}
